@@ -6,6 +6,8 @@ Name: Danilo Fernando Deverso
 * **[Requisitos](#requisitos)**
 * **[Instalação](#instalação)**
 * **[Enpoint](#endpoint)**
+* **[Testes](#testes)**
+* **[Observações](#observações)**
 
 ## Requisitos
 - Docker
@@ -30,6 +32,7 @@ $ ./vendor/bin/sail artisan migrate
 ```
 
 ## Endpoint
+
 #### Criar prescrições:
 
 ```bash
@@ -48,3 +51,24 @@ POST http://localhost/api/prescriptions
 }
 
 ```
+
+## Testes
+
+#### Como rodar os testes
+
+```bash
+# Acesse a pasta do projeto localmente
+# Acesse o container do projeto
+$ docker exec -it <container> bash
+
+# Acesse a pasta do projeto dentro do container
+$ cd /var/www/html
+
+# Execute os testes
+$ ./vendor/bin/phpunit
+# ou os arquivos de coverage
+$ ./vendor/bin/phpunit  --coverage-html reports/
+```
+
+## Observações
+- Devido a indisponibilidade do serviço de métricas o teste de intergração está falhando.

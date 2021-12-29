@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\IclinicDomainException;
+use App\Exceptions\PrescriptionException;
+use App\Http\Controllers\Rules\PrescriptionRule;
+use App\Http\Resources\PrescriptionResource;
+use App\Services\PrescriptionService;
 use Illuminate\Http\Request;
 
 class PrescriptionController extends Controller
@@ -30,11 +35,22 @@ class PrescriptionController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return PrescriptionResource
      */
-    public function store(Request $request)
+    public function store(Request $request, PrescriptionService $prescriptionService)
     {
-        return response(json_encode($request->all()));
+        try {
+            PrescriptionRule::validateRequest($request);
+            $response = $prescriptionService->store($request);
+            return new PrescriptionResource($response);
+        } catch (IclinicDomainException $e) {
+            return response()->json([
+                'error' => [
+                    'message' => $e->getMessage(),
+                    'code' => $e->getInnerCode()
+                ]], $e->getCode());
+        }
+
     }
 
     /**

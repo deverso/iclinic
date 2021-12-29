@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Http;
 class ClinicRepositoryHttp implements ClinicRepositoryInterface
 {
 
-    public function show(int $id): Clinic
+    public function show(string $id): Clinic
     {
         try {
             $response = Http::retry(ClinicConfig::RETRY)

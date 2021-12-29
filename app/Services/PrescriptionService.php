@@ -40,10 +40,12 @@ class PrescriptionService
 
             $metricDTO = new MetricDto($clinic, $physician, $patient, $prescription);
             $metric = $this->metricRepository->store($metricDTO->getData());
+
             $prescription->metric = $metric->id;
             $prescription->save();
-            DB::commit();
             $metric->setPrescriptionId($prescription->id);
+
+            DB::commit();
 
             return [
                 'id' => $prescription->id,

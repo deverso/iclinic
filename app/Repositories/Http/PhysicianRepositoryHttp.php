@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Http;
 class PhysicianRepositoryHttp implements PhysicianRepositoryInterface
 {
 
-    public function show(int $id): Physician
+    public function show(string $id): Physician
     {
         try {
             $response = Http::retry(PhysicianConfig::RETRY)

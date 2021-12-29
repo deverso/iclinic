@@ -6,5 +6,5 @@ use App\Models\Patient;
 
 interface PatientRepositoryInterface
 {
-    public function show(int $id): Patient;
+    public function show(string $id): Patient;
 }

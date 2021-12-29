@@ -44,7 +44,7 @@ class PrescriptionService
             $prescription->save();
             DB::commit();
             $metric->setPrescriptionId($prescription->id);
-        dd($metric);
+
             return [
                 'id' => $prescription->id,
                 'clinic' => $clinic->id,
@@ -53,9 +53,9 @@ class PrescriptionService
                 'text' => $prescription->text,
                 'metric' => $metric->id??0,
             ];
-        } catch (\Exception $e) {
+        } catch (IclinicDomainException $e) {
             DB::rollBack();
-            throw new IclinicDomainException(code: $e->getCode());
+            throw new IclinicDomainException($e->getMessage(), $e->getCode(), $e->getInnerCode());
         }
     }
 

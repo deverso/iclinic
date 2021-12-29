@@ -18,10 +18,4 @@ class PrescriptionRepositoryEloquent implements PrescriptionRepositoryInterface
     {
         return $this->entity->create($data);
     }
-
-    public function delete(string $id): bool
-    {
-//        return $this->entity->destroy($id);
-        return Prescription::destroy($id);
-    }
 }

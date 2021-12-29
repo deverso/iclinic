@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\IclinicDomainException;
-use App\Exceptions\PrescriptionException;
 use App\Http\Controllers\Rules\PrescriptionRule;
 use App\Http\Resources\PrescriptionResource;
 use App\Services\PrescriptionService;

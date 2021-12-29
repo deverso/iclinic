@@ -1,6 +1,6 @@
 # iClinic
 
-Name: Danilo Fernando Deverso
+Name: Danilo Deverso
 
 ## Table of contents:
 * **[Requisitos](#requisitos)**
